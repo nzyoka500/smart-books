@@ -10,3 +10,4 @@
 
 > ###### Dashboard page
 ![Dashboard page](./img/dashboard.png)
+![Dashboard page](./img/dashboard-1.png)
