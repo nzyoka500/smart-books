@@ -153,9 +153,7 @@ export const Auth = () => {
           </form>
         </div>
 
-        <div className="mt-6 text-center text-sm text-slate-600">
-          <p>Demo credentials: any email with password (min 6 chars)</p>
-        </div>
+       
       </div>
     </div>
   );
