@@ -4,8 +4,7 @@
 <!-- Screen images -->
 ![Login page](./img/login.png)
 
-<br/>
 ![Register page](./img/register.png)
 
-<br/>
+
 ![Dashboard page](./img/dashboard.png)
