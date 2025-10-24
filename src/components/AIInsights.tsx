@@ -24,6 +24,7 @@ interface Insight {
   title: string;
   message: string;
   icon: typeof Lightbulb;
+  explanation: string;
 }
 
 export const AIInsights = ({ transactions, summary }: AIInsightsProps) => {
@@ -37,6 +38,7 @@ export const AIInsights = ({ transactions, summary }: AIInsightsProps) => {
           title: 'Welcome to SmartBooks AI',
           message: 'Start adding transactions to receive personalized financial insights powered by AI.',
           icon: Lightbulb,
+          explanation: 'No data available yet to generate insights.',
         },
       ];
     }
@@ -60,6 +62,7 @@ export const AIInsights = ({ transactions, summary }: AIInsightsProps) => {
           title: 'Rising Expenses Detected',
           message: `Your expenses increased by ${percentChange.toFixed(0)}% compared to the previous week. Consider reviewing your spending on high-cost categories.`,
           icon: AlertCircle,
+          explanation: `Calculated by comparing your last ${recentWeek.length} transactions against the previous ${previousWeek.length} transactions.`,
         });
       } else if (percentChange < -10) {
         insights.push({
@@ -67,6 +70,7 @@ export const AIInsights = ({ transactions, summary }: AIInsightsProps) => {
           title: 'Great Expense Management',
           message: `Your expenses decreased by ${Math.abs(percentChange).toFixed(0)}% compared to last week. Keep up the excellent financial discipline!`,
           icon: TrendingDown,
+          explanation: `Based on week-over-week expense comparison of your transaction history.`,
         });
       }
     }
@@ -88,6 +92,7 @@ export const AIInsights = ({ transactions, summary }: AIInsightsProps) => {
           title: 'Category Spending Alert',
           message: `${topCategory[0]} represents ${categoryPercentage.toFixed(0)}% of your total expenses (KES ${topCategory[1].toLocaleString('en-KE', { minimumFractionDigits: 2 })}). Consider finding ways to optimize costs in this area.`,
           icon: Lightbulb,
+          explanation: `Analyzed all ${transactions.filter(t => t.type === 'expense').length} expense transactions to identify spending concentration.`,
         });
       }
     }
@@ -100,6 +105,7 @@ export const AIInsights = ({ transactions, summary }: AIInsightsProps) => {
           title: 'Strong Savings Rate',
           message: `You're saving ${savingsRate.toFixed(0)}% of your income. This is excellent financial health for an MSME. Consider investing surplus funds for growth.`,
           icon: TrendingUp,
+          explanation: `Calculated as (Total Income - Total Expenses) / Total Income across all your transactions.`,
         });
       }
     }
@@ -110,6 +116,7 @@ export const AIInsights = ({ transactions, summary }: AIInsightsProps) => {
         title: 'Negative Cash Flow',
         message: `Your expenses exceed income by KES ${Math.abs(summary.balance).toLocaleString('en-KE', { minimumFractionDigits: 2 })}. Review your expense categories and consider ways to increase revenue or reduce costs.`,
         icon: AlertCircle,
+        explanation: `Based on the sum of all income minus all expenses in your transaction history.`,
       });
     }
 
@@ -123,6 +130,7 @@ export const AIInsights = ({ transactions, summary }: AIInsightsProps) => {
         title: 'Income Pattern Analysis',
         message: `Your average income per transaction is KES ${avgIncome.toLocaleString('en-KE', { minimumFractionDigits: 2 })}. Focus on increasing transaction frequency or value to boost overall revenue.`,
         icon: Lightbulb,
+        explanation: `Calculated from ${incomeTransactions.length} income transactions. No personal data shared.`,
       });
     }
 
@@ -181,7 +189,10 @@ export const AIInsights = ({ transactions, summary }: AIInsightsProps) => {
                 <Icon className={`w-5 h-5 ${styles.icon} mt-0.5 flex-shrink-0`} />
                 <div className="flex-1 min-w-0">
                   <h3 className={`font-bold ${styles.title} mb-1`}>{insight.title}</h3>
-                  <p className={`text-sm ${styles.text} leading-relaxed`}>{insight.message}</p>
+                  <p className={`text-sm ${styles.text} leading-relaxed mb-2`}>{insight.message}</p>
+                  <p className={`text-xs ${styles.text} opacity-75 italic`}>
+                    💡 {insight.explanation}
+                  </p>
                 </div>
               </div>
             </div>
@@ -189,10 +200,13 @@ export const AIInsights = ({ transactions, summary }: AIInsightsProps) => {
         })}
       </div>
 
-      <div className="mt-5 pt-5 border-t border-slate-200">
+      <div className="mt-5 pt-5 border-t border-slate-200 space-y-2">
         <p className="text-xs text-slate-500 flex items-center gap-1">
           <Lightbulb className="w-3.5 h-3.5" />
-          AI insights are generated based on your transaction patterns and financial behavior
+          AI insights generated transparently from your last {transactions.length} transactions.
+        </p>
+        <p className="text-xs text-slate-400 italic">
+          🔒 Your data stays private. All insights calculated locally. No external AI services used.
         </p>
       </div>
     </div>
