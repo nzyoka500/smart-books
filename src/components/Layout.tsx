@@ -58,7 +58,7 @@ export const Layout = ({ children, currentPage, onNavigate, profile }: LayoutPro
                 <Wallet className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h1 className="text-xl font-bold text-slate-900">SmartBooks AI</h1>
+                <h1 className="text-xl font-bold text-slate-900">SmartBooks</h1>
                 <p className="text-xs text-emerald-600 font-medium hidden sm:block">
                   Ethical AI for Smarter MSME Financial Management
                 </p>
