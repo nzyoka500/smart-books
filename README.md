@@ -60,7 +60,7 @@
 - Total Expenses  
 - Current Balance  
 - Visual analytics with bar, pie, and line charts
-![Dashboard](./img/dashboard.png) ![Dashboard-2](./img/dashboard-2.png)
+![Dashboard](./img/dashboard.png)
 
 ###### 3. Add Transaction
 - Simple form to add new transactions (income or expense).  
