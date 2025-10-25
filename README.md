@@ -46,7 +46,6 @@
 | **UI Framework** | Tailwind CSS |
 | **Hosting** | Vercel / Netlify |
 
----
 
 ## Core Modules
 
